@@ -212,7 +212,11 @@ typedef enum {
         if (filePath) {
             _dbQueue = [[FMDatabaseQueue alloc] initWithPath:filePath];
             [_dbQueue inDatabase:^(FMDatabase *db) {
-                db.logsErrors = DEBUG;
+#if DEBUG
+                db.logsErrors = 1;
+#else
+                db.logsErrors = 0;
+#endif
                 if (![db open]) {
                     NSLog(@"Could not create database queue for path %@", filePath);
                     return;
