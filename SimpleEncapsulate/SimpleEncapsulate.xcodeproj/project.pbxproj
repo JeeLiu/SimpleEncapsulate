@@ -1,0 +1,576 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AA44E9111949E7A90044EB67 /* AFNetworking.framework in Resources */ = {isa = PBXBuildFile; fileRef = AA8ABF141949B20500E179BD /* AFNetworking.framework */; };
+		AA44E9121949E7A90044EB67 /* FMDB.framework in Resources */ = {isa = PBXBuildFile; fileRef = AA8ABF151949B20500E179BD /* FMDB.framework */; };
+		AA8ABEEF1949B1A500E179BD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA8ABEEE1949B1A500E179BD /* Foundation.framework */; };
+		AA8ABEF41949B1A500E179BD /* SimpleEncapsulate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AA8ABEF31949B1A500E179BD /* SimpleEncapsulate.h */; };
+		AA8ABEFD1949B1A500E179BD /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA8ABEFC1949B1A500E179BD /* XCTest.framework */; };
+		AA8ABEFE1949B1A500E179BD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA8ABEEE1949B1A500E179BD /* Foundation.framework */; };
+		AA8ABF001949B1A500E179BD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA8ABEFF1949B1A500E179BD /* UIKit.framework */; };
+		AA8ABF031949B1A500E179BD /* libSimpleEncapsulate.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA8ABEEB1949B1A500E179BD /* libSimpleEncapsulate.a */; };
+		AA8ABF091949B1A500E179BD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AA8ABF071949B1A500E179BD /* InfoPlist.strings */; };
+		AA8ABF0B1949B1A500E179BD /* SimpleEncapsulateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8ABF0A1949B1A500E179BD /* SimpleEncapsulateTests.m */; };
+		AA8ABF161949B20500E179BD /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA8ABF141949B20500E179BD /* AFNetworking.framework */; };
+		AA8ABF171949B20500E179BD /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA8ABF141949B20500E179BD /* AFNetworking.framework */; };
+		AA8ABF181949B20500E179BD /* FMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA8ABF151949B20500E179BD /* FMDB.framework */; };
+		AA8ABF191949B20500E179BD /* FMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA8ABF151949B20500E179BD /* FMDB.framework */; };
+		AA8ABF2C1949B2B600E179BD /* AMCObject.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8ABF1B1949B2B600E179BD /* AMCObject.m */; };
+		AA8ABF2D1949B2B600E179BD /* AMCObject.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8ABF1B1949B2B600E179BD /* AMCObject.m */; };
+		AA8ABF2E1949B2B600E179BD /* Container+Subscript.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8ABF1D1949B2B600E179BD /* Container+Subscript.m */; };
+		AA8ABF2F1949B2B600E179BD /* Container+Subscript.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8ABF1D1949B2B600E179BD /* Container+Subscript.m */; };
+		AA8ABF301949B2B600E179BD /* SEDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8ABF1F1949B2B600E179BD /* SEDatabase.m */; };
+		AA8ABF311949B2B600E179BD /* SEDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8ABF1F1949B2B600E179BD /* SEDatabase.m */; };
+		AA8ABF321949B2B600E179BD /* SEDataCache.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8ABF211949B2B600E179BD /* SEDataCache.m */; };
+		AA8ABF331949B2B600E179BD /* SEDataCache.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8ABF211949B2B600E179BD /* SEDataCache.m */; };
+		AA8ABF341949B2B600E179BD /* SEDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8ABF231949B2B600E179BD /* SEDataSource.m */; };
+		AA8ABF351949B2B600E179BD /* SEDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8ABF231949B2B600E179BD /* SEDataSource.m */; };
+		AA8ABF361949B2B600E179BD /* SEImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8ABF251949B2B600E179BD /* SEImageCache.m */; };
+		AA8ABF371949B2B600E179BD /* SEImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8ABF251949B2B600E179BD /* SEImageCache.m */; };
+		AA8ABF381949B2B600E179BD /* SENetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8ABF271949B2B600E179BD /* SENetwork.m */; };
+		AA8ABF391949B2B600E179BD /* SENetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8ABF271949B2B600E179BD /* SENetwork.m */; };
+		AA8ABF3A1949B2B600E179BD /* NSNull+InternalNullExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8ABF291949B2B600E179BD /* NSNull+InternalNullExtension.m */; };
+		AA8ABF3B1949B2B600E179BD /* NSNull+InternalNullExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8ABF291949B2B600E179BD /* NSNull+InternalNullExtension.m */; };
+		AA8ABF3C1949B2B600E179BD /* NSObject+DataHandling.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8ABF2B1949B2B600E179BD /* NSObject+DataHandling.m */; };
+		AA8ABF3D1949B2B600E179BD /* NSObject+DataHandling.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8ABF2B1949B2B600E179BD /* NSObject+DataHandling.m */; };
+		AA8ABF401949B2F300E179BD /* SEUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8ABF3F1949B2F300E179BD /* SEUtilities.m */; };
+		AA8ABF411949B2F300E179BD /* SEUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8ABF3F1949B2F300E179BD /* SEUtilities.m */; };
+		AA8ABF441949B5DE00E179BD /* SEURIInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8ABF431949B5DE00E179BD /* SEURIInfo.m */; };
+		AA8ABF451949B5DE00E179BD /* SEURIInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8ABF431949B5DE00E179BD /* SEURIInfo.m */; };
+		AA8ABF491949BDC100E179BD /* NSData+Compress.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8ABF481949BDC100E179BD /* NSData+Compress.m */; };
+		AA8ABF4A1949BDC100E179BD /* NSData+Compress.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8ABF481949BDC100E179BD /* NSData+Compress.m */; };
+		AA8ABF4B1949C53A00E179BD /* AMCObject.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AA8ABF1A1949B2B600E179BD /* AMCObject.h */; };
+		AA8ABF4C1949C53A00E179BD /* Container+Subscript.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AA8ABF1C1949B2B600E179BD /* Container+Subscript.h */; };
+		AA8ABF4D1949C53A00E179BD /* NSData+Compress.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AA8ABF471949BDC100E179BD /* NSData+Compress.h */; };
+		AA8ABF4E1949C53A00E179BD /* NSNull+InternalNullExtension.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AA8ABF281949B2B600E179BD /* NSNull+InternalNullExtension.h */; };
+		AA8ABF4F1949C53A00E179BD /* NSObject+DataHandling.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AA8ABF2A1949B2B600E179BD /* NSObject+DataHandling.h */; };
+		AA8ABF501949C53A00E179BD /* SEDatabase.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AA8ABF1E1949B2B600E179BD /* SEDatabase.h */; };
+		AA8ABF511949C53A00E179BD /* SEDataCache.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AA8ABF201949B2B600E179BD /* SEDataCache.h */; };
+		AA8ABF521949C53A00E179BD /* SEDataSource.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AA8ABF221949B2B600E179BD /* SEDataSource.h */; };
+		AA8ABF531949C53A00E179BD /* SEImageCache.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AA8ABF241949B2B600E179BD /* SEImageCache.h */; };
+		AA8ABF541949C53A00E179BD /* SEMessageDefine.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AA8ABF461949B64C00E179BD /* SEMessageDefine.h */; };
+		AA8ABF551949C53A00E179BD /* SENetwork.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AA8ABF261949B2B600E179BD /* SENetwork.h */; };
+		AA8ABF561949C53A00E179BD /* SEURIInfo.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AA8ABF421949B5DE00E179BD /* SEURIInfo.h */; };
+		AA8ABF571949C53A00E179BD /* SEUtilities.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AA8ABF3E1949B2F300E179BD /* SEUtilities.h */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AA8ABF011949B1A500E179BD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA8ABEE31949B1A500E179BD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AA8ABEEA1949B1A500E179BD;
+			remoteInfo = SimpleEncapsulate;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		AA8ABEE91949B1A500E179BD /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				AA8ABF4B1949C53A00E179BD /* AMCObject.h in CopyFiles */,
+				AA8ABF4C1949C53A00E179BD /* Container+Subscript.h in CopyFiles */,
+				AA8ABF4D1949C53A00E179BD /* NSData+Compress.h in CopyFiles */,
+				AA8ABF4E1949C53A00E179BD /* NSNull+InternalNullExtension.h in CopyFiles */,
+				AA8ABF4F1949C53A00E179BD /* NSObject+DataHandling.h in CopyFiles */,
+				AA8ABF501949C53A00E179BD /* SEDatabase.h in CopyFiles */,
+				AA8ABF511949C53A00E179BD /* SEDataCache.h in CopyFiles */,
+				AA8ABF521949C53A00E179BD /* SEDataSource.h in CopyFiles */,
+				AA8ABF531949C53A00E179BD /* SEImageCache.h in CopyFiles */,
+				AA8ABF541949C53A00E179BD /* SEMessageDefine.h in CopyFiles */,
+				AA8ABF551949C53A00E179BD /* SENetwork.h in CopyFiles */,
+				AA8ABF561949C53A00E179BD /* SEURIInfo.h in CopyFiles */,
+				AA8ABF571949C53A00E179BD /* SEUtilities.h in CopyFiles */,
+				AA8ABEF41949B1A500E179BD /* SimpleEncapsulate.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		AA8ABEEB1949B1A500E179BD /* libSimpleEncapsulate.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSimpleEncapsulate.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA8ABEEE1949B1A500E179BD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		AA8ABEF21949B1A500E179BD /* SimpleEncapsulate-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SimpleEncapsulate-Prefix.pch"; sourceTree = "<group>"; };
+		AA8ABEF31949B1A500E179BD /* SimpleEncapsulate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleEncapsulate.h; sourceTree = "<group>"; };
+		AA8ABEFB1949B1A500E179BD /* SimpleEncapsulateTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleEncapsulateTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA8ABEFC1949B1A500E179BD /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		AA8ABEFF1949B1A500E179BD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		AA8ABF061949B1A500E179BD /* SimpleEncapsulateTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SimpleEncapsulateTests-Info.plist"; sourceTree = "<group>"; };
+		AA8ABF081949B1A500E179BD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		AA8ABF0A1949B1A500E179BD /* SimpleEncapsulateTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimpleEncapsulateTests.m; sourceTree = "<group>"; };
+		AA8ABF141949B20500E179BD /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AFNetworking.framework; sourceTree = "<group>"; };
+		AA8ABF151949B20500E179BD /* FMDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FMDB.framework; sourceTree = "<group>"; };
+		AA8ABF1A1949B2B600E179BD /* AMCObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMCObject.h; sourceTree = "<group>"; };
+		AA8ABF1B1949B2B600E179BD /* AMCObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMCObject.m; sourceTree = "<group>"; };
+		AA8ABF1C1949B2B600E179BD /* Container+Subscript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Container+Subscript.h"; sourceTree = "<group>"; };
+		AA8ABF1D1949B2B600E179BD /* Container+Subscript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Container+Subscript.m"; sourceTree = "<group>"; };
+		AA8ABF1E1949B2B600E179BD /* SEDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEDatabase.h; sourceTree = "<group>"; };
+		AA8ABF1F1949B2B600E179BD /* SEDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEDatabase.m; sourceTree = "<group>"; };
+		AA8ABF201949B2B600E179BD /* SEDataCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEDataCache.h; sourceTree = "<group>"; };
+		AA8ABF211949B2B600E179BD /* SEDataCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEDataCache.m; sourceTree = "<group>"; };
+		AA8ABF221949B2B600E179BD /* SEDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEDataSource.h; sourceTree = "<group>"; };
+		AA8ABF231949B2B600E179BD /* SEDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEDataSource.m; sourceTree = "<group>"; };
+		AA8ABF241949B2B600E179BD /* SEImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEImageCache.h; sourceTree = "<group>"; };
+		AA8ABF251949B2B600E179BD /* SEImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEImageCache.m; sourceTree = "<group>"; };
+		AA8ABF261949B2B600E179BD /* SENetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SENetwork.h; sourceTree = "<group>"; };
+		AA8ABF271949B2B600E179BD /* SENetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SENetwork.m; sourceTree = "<group>"; };
+		AA8ABF281949B2B600E179BD /* NSNull+InternalNullExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNull+InternalNullExtension.h"; sourceTree = "<group>"; };
+		AA8ABF291949B2B600E179BD /* NSNull+InternalNullExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNull+InternalNullExtension.m"; sourceTree = "<group>"; };
+		AA8ABF2A1949B2B600E179BD /* NSObject+DataHandling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DataHandling.h"; sourceTree = "<group>"; };
+		AA8ABF2B1949B2B600E179BD /* NSObject+DataHandling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DataHandling.m"; sourceTree = "<group>"; };
+		AA8ABF3E1949B2F300E179BD /* SEUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEUtilities.h; sourceTree = "<group>"; };
+		AA8ABF3F1949B2F300E179BD /* SEUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEUtilities.m; sourceTree = "<group>"; };
+		AA8ABF421949B5DE00E179BD /* SEURIInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEURIInfo.h; sourceTree = "<group>"; };
+		AA8ABF431949B5DE00E179BD /* SEURIInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEURIInfo.m; sourceTree = "<group>"; };
+		AA8ABF461949B64C00E179BD /* SEMessageDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEMessageDefine.h; sourceTree = "<group>"; };
+		AA8ABF471949BDC100E179BD /* NSData+Compress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Compress.h"; sourceTree = "<group>"; };
+		AA8ABF481949BDC100E179BD /* NSData+Compress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Compress.m"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AA8ABEE81949B1A500E179BD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA8ABEEF1949B1A500E179BD /* Foundation.framework in Frameworks */,
+				AA8ABF181949B20500E179BD /* FMDB.framework in Frameworks */,
+				AA8ABF161949B20500E179BD /* AFNetworking.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA8ABEF81949B1A500E179BD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA8ABEFD1949B1A500E179BD /* XCTest.framework in Frameworks */,
+				AA8ABF191949B20500E179BD /* FMDB.framework in Frameworks */,
+				AA8ABF171949B20500E179BD /* AFNetworking.framework in Frameworks */,
+				AA8ABF001949B1A500E179BD /* UIKit.framework in Frameworks */,
+				AA8ABEFE1949B1A500E179BD /* Foundation.framework in Frameworks */,
+				AA8ABF031949B1A500E179BD /* libSimpleEncapsulate.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AA8ABEE21949B1A500E179BD = {
+			isa = PBXGroup;
+			children = (
+				AA8ABEF01949B1A500E179BD /* SimpleEncapsulate */,
+				AA8ABF041949B1A500E179BD /* SimpleEncapsulateTests */,
+				AA8ABEED1949B1A500E179BD /* Frameworks */,
+				AA8ABEEC1949B1A500E179BD /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AA8ABEEC1949B1A500E179BD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AA8ABEEB1949B1A500E179BD /* libSimpleEncapsulate.a */,
+				AA8ABEFB1949B1A500E179BD /* SimpleEncapsulateTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AA8ABEED1949B1A500E179BD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AA8ABF141949B20500E179BD /* AFNetworking.framework */,
+				AA8ABF151949B20500E179BD /* FMDB.framework */,
+				AA8ABEEE1949B1A500E179BD /* Foundation.framework */,
+				AA8ABEFC1949B1A500E179BD /* XCTest.framework */,
+				AA8ABEFF1949B1A500E179BD /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AA8ABEF01949B1A500E179BD /* SimpleEncapsulate */ = {
+			isa = PBXGroup;
+			children = (
+				AA8ABEF31949B1A500E179BD /* SimpleEncapsulate.h */,
+				AA8ABF1A1949B2B600E179BD /* AMCObject.h */,
+				AA8ABF1B1949B2B600E179BD /* AMCObject.m */,
+				AA8ABF1C1949B2B600E179BD /* Container+Subscript.h */,
+				AA8ABF1D1949B2B600E179BD /* Container+Subscript.m */,
+				AA8ABF471949BDC100E179BD /* NSData+Compress.h */,
+				AA8ABF481949BDC100E179BD /* NSData+Compress.m */,
+				AA8ABF281949B2B600E179BD /* NSNull+InternalNullExtension.h */,
+				AA8ABF291949B2B600E179BD /* NSNull+InternalNullExtension.m */,
+				AA8ABF2A1949B2B600E179BD /* NSObject+DataHandling.h */,
+				AA8ABF2B1949B2B600E179BD /* NSObject+DataHandling.m */,
+				AA8ABF1E1949B2B600E179BD /* SEDatabase.h */,
+				AA8ABF1F1949B2B600E179BD /* SEDatabase.m */,
+				AA8ABF201949B2B600E179BD /* SEDataCache.h */,
+				AA8ABF211949B2B600E179BD /* SEDataCache.m */,
+				AA8ABF221949B2B600E179BD /* SEDataSource.h */,
+				AA8ABF231949B2B600E179BD /* SEDataSource.m */,
+				AA8ABF241949B2B600E179BD /* SEImageCache.h */,
+				AA8ABF251949B2B600E179BD /* SEImageCache.m */,
+				AA8ABF461949B64C00E179BD /* SEMessageDefine.h */,
+				AA8ABF261949B2B600E179BD /* SENetwork.h */,
+				AA8ABF271949B2B600E179BD /* SENetwork.m */,
+				AA8ABF421949B5DE00E179BD /* SEURIInfo.h */,
+				AA8ABF431949B5DE00E179BD /* SEURIInfo.m */,
+				AA8ABF3E1949B2F300E179BD /* SEUtilities.h */,
+				AA8ABF3F1949B2F300E179BD /* SEUtilities.m */,
+				AA8ABEF11949B1A500E179BD /* Supporting Files */,
+			);
+			path = SimpleEncapsulate;
+			sourceTree = "<group>";
+		};
+		AA8ABEF11949B1A500E179BD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				AA8ABEF21949B1A500E179BD /* SimpleEncapsulate-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AA8ABF041949B1A500E179BD /* SimpleEncapsulateTests */ = {
+			isa = PBXGroup;
+			children = (
+				AA8ABF0A1949B1A500E179BD /* SimpleEncapsulateTests.m */,
+				AA8ABF051949B1A500E179BD /* Supporting Files */,
+			);
+			path = SimpleEncapsulateTests;
+			sourceTree = "<group>";
+		};
+		AA8ABF051949B1A500E179BD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				AA8ABF061949B1A500E179BD /* SimpleEncapsulateTests-Info.plist */,
+				AA8ABF071949B1A500E179BD /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AA8ABEEA1949B1A500E179BD /* SimpleEncapsulate */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA8ABF0E1949B1A500E179BD /* Build configuration list for PBXNativeTarget "SimpleEncapsulate" */;
+			buildPhases = (
+				AA8ABEE71949B1A500E179BD /* Sources */,
+				AA8ABEE81949B1A500E179BD /* Frameworks */,
+				AA8ABEE91949B1A500E179BD /* CopyFiles */,
+				AA44E9101949E79A0044EB67 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SimpleEncapsulate;
+			productName = SimpleEncapsulate;
+			productReference = AA8ABEEB1949B1A500E179BD /* libSimpleEncapsulate.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		AA8ABEFA1949B1A500E179BD /* SimpleEncapsulateTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA8ABF111949B1A500E179BD /* Build configuration list for PBXNativeTarget "SimpleEncapsulateTests" */;
+			buildPhases = (
+				AA8ABEF71949B1A500E179BD /* Sources */,
+				AA8ABEF81949B1A500E179BD /* Frameworks */,
+				AA8ABEF91949B1A500E179BD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AA8ABF021949B1A500E179BD /* PBXTargetDependency */,
+			);
+			name = SimpleEncapsulateTests;
+			productName = SimpleEncapsulateTests;
+			productReference = AA8ABEFB1949B1A500E179BD /* SimpleEncapsulateTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AA8ABEE31949B1A500E179BD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = yhtian;
+			};
+			buildConfigurationList = AA8ABEE61949B1A500E179BD /* Build configuration list for PBXProject "SimpleEncapsulate" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = AA8ABEE21949B1A500E179BD;
+			productRefGroup = AA8ABEEC1949B1A500E179BD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AA8ABEEA1949B1A500E179BD /* SimpleEncapsulate */,
+				AA8ABEFA1949B1A500E179BD /* SimpleEncapsulateTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AA44E9101949E79A0044EB67 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA44E9111949E7A90044EB67 /* AFNetworking.framework in Resources */,
+				AA44E9121949E7A90044EB67 /* FMDB.framework in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA8ABEF91949B1A500E179BD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA8ABF091949B1A500E179BD /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AA8ABEE71949B1A500E179BD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA8ABF321949B2B600E179BD /* SEDataCache.m in Sources */,
+				AA8ABF2C1949B2B600E179BD /* AMCObject.m in Sources */,
+				AA8ABF341949B2B600E179BD /* SEDataSource.m in Sources */,
+				AA8ABF2E1949B2B600E179BD /* Container+Subscript.m in Sources */,
+				AA8ABF3A1949B2B600E179BD /* NSNull+InternalNullExtension.m in Sources */,
+				AA8ABF301949B2B600E179BD /* SEDatabase.m in Sources */,
+				AA8ABF401949B2F300E179BD /* SEUtilities.m in Sources */,
+				AA8ABF441949B5DE00E179BD /* SEURIInfo.m in Sources */,
+				AA8ABF381949B2B600E179BD /* SENetwork.m in Sources */,
+				AA8ABF3C1949B2B600E179BD /* NSObject+DataHandling.m in Sources */,
+				AA8ABF361949B2B600E179BD /* SEImageCache.m in Sources */,
+				AA8ABF491949BDC100E179BD /* NSData+Compress.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA8ABEF71949B1A500E179BD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA8ABF331949B2B600E179BD /* SEDataCache.m in Sources */,
+				AA8ABF2D1949B2B600E179BD /* AMCObject.m in Sources */,
+				AA8ABF351949B2B600E179BD /* SEDataSource.m in Sources */,
+				AA8ABF2F1949B2B600E179BD /* Container+Subscript.m in Sources */,
+				AA8ABF3B1949B2B600E179BD /* NSNull+InternalNullExtension.m in Sources */,
+				AA8ABF311949B2B600E179BD /* SEDatabase.m in Sources */,
+				AA8ABF411949B2F300E179BD /* SEUtilities.m in Sources */,
+				AA8ABF0B1949B1A500E179BD /* SimpleEncapsulateTests.m in Sources */,
+				AA8ABF451949B5DE00E179BD /* SEURIInfo.m in Sources */,
+				AA8ABF391949B2B600E179BD /* SENetwork.m in Sources */,
+				AA8ABF3D1949B2B600E179BD /* NSObject+DataHandling.m in Sources */,
+				AA8ABF371949B2B600E179BD /* SEImageCache.m in Sources */,
+				AA8ABF4A1949BDC100E179BD /* NSData+Compress.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AA8ABF021949B1A500E179BD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AA8ABEEA1949B1A500E179BD /* SimpleEncapsulate */;
+			targetProxy = AA8ABF011949B1A500E179BD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		AA8ABF071949B1A500E179BD /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AA8ABF081949B1A500E179BD /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		AA8ABF0C1949B1A500E179BD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		AA8ABF0D1949B1A500E179BD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AA8ABF0F1949B1A500E179BD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/SimpleEncapsulate.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SimpleEncapsulate/SimpleEncapsulate-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		AA8ABF101949B1A500E179BD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/SimpleEncapsulate.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SimpleEncapsulate/SimpleEncapsulate-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		AA8ABF121949B1A500E179BD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(PROJECT_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SimpleEncapsulate/SimpleEncapsulate-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "SimpleEncapsulateTests/SimpleEncapsulateTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		AA8ABF131949B1A500E179BD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(PROJECT_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SimpleEncapsulate/SimpleEncapsulate-Prefix.pch";
+				INFOPLIST_FILE = "SimpleEncapsulateTests/SimpleEncapsulateTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AA8ABEE61949B1A500E179BD /* Build configuration list for PBXProject "SimpleEncapsulate" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA8ABF0C1949B1A500E179BD /* Debug */,
+				AA8ABF0D1949B1A500E179BD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AA8ABF0E1949B1A500E179BD /* Build configuration list for PBXNativeTarget "SimpleEncapsulate" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA8ABF0F1949B1A500E179BD /* Debug */,
+				AA8ABF101949B1A500E179BD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AA8ABF111949B1A500E179BD /* Build configuration list for PBXNativeTarget "SimpleEncapsulateTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA8ABF121949B1A500E179BD /* Debug */,
+				AA8ABF131949B1A500E179BD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AA8ABEE31949B1A500E179BD /* Project object */;
+}

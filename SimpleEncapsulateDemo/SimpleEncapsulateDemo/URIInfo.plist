@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>1</key>
+	<dict>
+		<key>msgId</key>
+		<integer>1</integer>
+		<key>relativePath</key>
+		<string>search</string>
+		<key>methodType</key>
+		<integer>0</integer>
+		<key>encodeType</key>
+		<integer>0</integer>
+		<key>responseModelClass</key>
+		<string>SearchResult</string>
+		<key>responseType</key>
+		<integer>0</integer>
+		<key>comment</key>
+		<string>搜索图书</string>
+	</dict>
+	<key>2</key>
+	<dict>
+		<key>msgId</key>
+		<integer>2</integer>
+		<key>relativePath</key>
+		<string></string>
+		<key>methodType</key>
+		<integer>0</integer>
+		<key>encodeType</key>
+		<integer>0</integer>
+		<key>responseModelClass</key>
+		<string>BookInfo</string>
+		<key>responseType</key>
+		<integer>0</integer>
+		<key>comment</key>
+		<string>获取图书信息</string>
+	</dict>
+</dict>
+</plist>
