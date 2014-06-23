@@ -8,8 +8,8 @@
 
 #import "SEDataSource.h"
 
-//#include <objc/runtime.h>
-//#include <objc/message.h>
+#include <objc/runtime.h>
+#include <objc/message.h>
 
 #import "SEMessageDefine.h"
 #import "SEUtilities.h"
@@ -17,7 +17,6 @@
 #import "NSObject+DataHandling.h"
 
 @implementation SEDataSource
-@synthesize data = _data, msgId = _msgId, state = _state;
 
 - (id)init
 {
@@ -27,7 +26,6 @@
                forKeyPath:@"data"
                   options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
                   context:NULL];
-        self.state = kSEDataStateUnInitial;
     }
     return self;
 }
@@ -43,18 +41,15 @@
 
 - (void)fetchData
 {
-    self.state = kSEDataStateFetching;
 }
 
 - (void)handleData:(id)data withMsgId:(NSInteger)msgId
 {
-    self.state = kSEDataStateReceiveSucceed;
     self.data = [self parseData:data];
 }
 
 - (void)handleError:(NSError *)error withMsgId:(NSInteger)msgId
 {
-    self.state = kSEDataStateReceiveFailed;
     if ([self.controller respondsToSelector:@selector(handleError:withMsgId:)]) {
         [self.controller handleError:error withMsgId:msgId];
     }
@@ -104,8 +99,6 @@
         }
     }
 }
-
-// Protocol buffers
 
 //static NSString *propertyNameWithKey(NSString *key)
 //{

@@ -7,7 +7,8 @@
 //
 
 #import "DetailViewController.h"
-#import <AFNetworking/UIKit+AFNetworking.h>
+#import <SimpleEncapsulate/SimpleEncapsulate.h>
+#import <SimpleEncapsulate/AFNetworking.h>
 #import "BookInfo.h"
 #import "SearchResult.h"
 #import "WebViewController.h"

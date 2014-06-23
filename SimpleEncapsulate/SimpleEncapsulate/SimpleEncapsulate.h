@@ -2,13 +2,16 @@
 //  SimpleEncapsulate.h
 //  SimpleEncapsulate
 //
-//  Created by yhtian on 14-6-12.
+//  Created by yhtian on 14-6-13.
 //  Copyright (c) 2014年 yhtian. All rights reserved.
 //
 
 #ifndef SimpleEncapsulate_SimpleEncapsulate_h
 #define SimpleEncapsulate_SimpleEncapsulate_h
 
+#import <SimpleEncapsulate/AFNetworking.h>
+#import <SimpleEncapsulate/UIKit+AFNetworking.h>
+#import <SimpleEncapsulate/FMDB.h>
 #import <SimpleEncapsulate/AMCObject.h>
 #import <SimpleEncapsulate/Container+Subscript.h>
 #import <SimpleEncapsulate/NSData+Compress.h>

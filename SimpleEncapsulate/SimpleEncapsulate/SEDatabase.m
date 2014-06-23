@@ -7,9 +7,13 @@
 //
 
 #import "SEDatabase.h"
-#import <FMDB/FMDB.h>
+#import "FMDB.h"
 #import "SEUtilities.h"
 #import "AMCObject.h"
+
+#ifndef DEBUG
+#define DEBUG 0
+#endif
 
 static const void *kDatabaseSpecificKey = &kDatabaseSpecificKey;
 
@@ -212,11 +216,7 @@ typedef enum {
         if (filePath) {
             _dbQueue = [[FMDatabaseQueue alloc] initWithPath:filePath];
             [_dbQueue inDatabase:^(FMDatabase *db) {
-#if DEBUG
-                db.logsErrors = 1;
-#else
-                db.logsErrors = 0;
-#endif
+                db.logsErrors = DEBUG;
                 if (![db open]) {
                     NSLog(@"Could not create database queue for path %@", filePath);
                     return;

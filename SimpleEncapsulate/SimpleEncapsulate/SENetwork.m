@@ -8,8 +8,8 @@
 
 #import "SENetwork.h"
 #import <objc/runtime.h>
-#import <AFNetworking/AFNetworking.h>
-#import <AFNetworking/UIKit+AFNetworking.h>
+#import "AFNetworking.h"
+#import "UIKit+AFNetworking.h"
 #import "AMCObject.h"
 #import "NSData+Compress.h"
 #import "SEMessageDefine.h"
@@ -22,6 +22,8 @@
 - (id)parseFromData:(NSData *)data;
 
 @end
+
+static dispatch_queue_t _networkOperationQueue;
 
 typedef void (^SuccessBlock)(AFHTTPRequestOperation *operation, id responseObject);
 typedef void (^FailureBlock)(AFHTTPRequestOperation *operation, NSError *error);
@@ -73,11 +75,14 @@ static NSString *const kSENetworkOperationMsgIdKey = @"msgId";
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        NSURLCache *urlCache = [[NSURLCache alloc] initWithMemoryCapacity:4 * 1024 * 1024
-                                                             diskCapacity:20 * 1024 * 1024
-                                                                 diskPath:nil];
-        [NSURLCache setSharedURLCache:urlCache];
-        [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
+        _networkOperationQueue = dispatch_queue_create("SimpleEncapsulate.network", NULL);
+        dispatch_async(_networkOperationQueue, ^{
+            NSURLCache *urlCache = [[NSURLCache alloc] initWithMemoryCapacity:4 * 1024 * 1024
+                                                                 diskCapacity:20 * 1024 * 1024
+                                                                     diskPath:nil];
+            [NSURLCache setSharedURLCache:urlCache];
+            [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
+        });
     });
 }
 
@@ -275,90 +280,94 @@ static NSString *const kSENetworkOperationMsgIdKey = @"msgId";
     if (!uriInfo) {
         return;
     }
-    @autoreleasepool {
-        if (![self.networkManager.reachabilityManager isReachable] &&
-            self.networkManager.reachabilityManager.networkReachabilityStatus != AFNetworkReachabilityStatusUnknown) {
-            NSError *error = [NSError errorWithDomain:kSEDomainName
-                                                 code:kResponseCodeNoInternet
-                                             userInfo:@{NSLocalizedDescriptionKey: @"No network"}];
-            [self dataDidReturn:error msgId:msgId regClassName:nil handler:handler];
-            return;
-        }
-        AFURLConnectionOperation *op = [SENetworkOperationManager operationWithMsgId:msgId];
-        if (op) {
-            if (reload) {
-                [op cancel];
-            } else {
+    dispatch_async(_networkOperationQueue, ^{
+        @autoreleasepool {
+            if (![self.networkManager.reachabilityManager isReachable] &&
+                self.networkManager.reachabilityManager.networkReachabilityStatus != AFNetworkReachabilityStatusUnknown) {
+                NSError *error = [NSError errorWithDomain:kSEDomainName
+                                                     code:kResponseCodeNoInternet
+                                                 userInfo:@{NSLocalizedDescriptionKey: @"No network"}];
+                [self dataDidReturn:error msgId:msgId regClassName:nil handler:handler];
                 return;
             }
-        }
-
-        NetworkEncodingType type = uriInfo.encodeType;
-        self.networkManager.requestSerializer = _requestSerializer[type];
-        SEL selector = [[self class] methodWithType:uriInfo.methodType];
-        NSMethodSignature *signature = [[self.networkManager class] instanceMethodSignatureForSelector:selector];
-        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
-        [invocation setSelector:selector];
-        NSString *relativePath = uriInfo.relativePath;
-        int index = 2;
-        [invocation setArgument:&relativePath atIndex:index];
-        ++index;
-        NSDictionary *param;
-        if (uriInfo.ignoreCommonParams) {
-            param = [self dictionaryRepresentationWithParams:params];
-        } else {
-            param = [self paramsByAddParam:params];
-        }
-        [invocation setArgument:&param atIndex:index];
-        ++index;
-        if (uriInfo.methodType == kFetchTypePostForm) {
-            FormDataBlock block = nil;
-            [invocation setArgument:&block atIndex:index];
+            AFURLConnectionOperation *op = [SENetworkOperationManager operationWithMsgId:msgId];
+            if (op) {
+                if (reload) {
+                    [op cancel];
+                } else {
+                    return;
+                }
+            }
+            
+            NetworkEncodingType type = uriInfo.encodeType;
+            self.networkManager.requestSerializer = _requestSerializer[type];
+            SEL selector = [[self class] methodWithType:uriInfo.methodType];
+            NSMethodSignature *signature = [[self.networkManager class] instanceMethodSignatureForSelector:selector];
+            NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
+            [invocation setSelector:selector];
+            NSString *relativePath = uriInfo.relativePath;
+            int index = 2;
+            [invocation setArgument:&relativePath atIndex:index];
             ++index;
-        }
-        SuccessBlock successBlock = ^(AFHTTPRequestOperation *operation, id responseObject) {
-            LOG(@"Succeed with msgId:(%d, %d), %@",
-                (int)(MAINMSG(msgId)), (int)(SUBMSG(msgId)), uriInfo.comment ? uriInfo.comment : @"");
-            LOG(@"url = %@", operation.response.URL);
-            id data = operation.responseData;
-            if (uriInfo.responseZipped) {
-                data = [data uncompressZippedData];
+            NSDictionary *param;
+            if (uriInfo.ignoreCommonParams) {
+                param = [self dictionaryRepresentationWithParams:params];
+            } else {
+                param = [self paramsByAddParam:params];
             }
-            [self dataDidReturn:data msgId:msgId regClassName:uriInfo.responseModelClass handler:handler];
-        };
-        [invocation setArgument:&successBlock atIndex:index];
-        ++index;
-        FailureBlock failureBlock = ^(AFHTTPRequestOperation *operation, NSError *error) {
-            LOG(@"url = %@", operation.response.URL);
-            if ([operation isCancelled]) {
-                LOG(@"Cancelled with msgId:(%d, %d), %@",
+            [invocation setArgument:&param atIndex:index];
+            ++index;
+            if (uriInfo.methodType == kFetchTypePostForm) {
+                FormDataBlock block = nil;
+                [invocation setArgument:&block atIndex:index];
+                ++index;
+            }
+            SuccessBlock successBlock = ^(AFHTTPRequestOperation *operation, id responseObject) {
+                LOG(@"Succeed with msgId:(%d, %d), %@",
                     (int)(MAINMSG(msgId)), (int)(SUBMSG(msgId)), uriInfo.comment ? uriInfo.comment : @"");
-                return;
-            }
-            LOG(@"Failed with msgId:(%d, %d), %@",
-                (int)(MAINMSG(msgId)), (int)(SUBMSG(msgId)), uriInfo.comment ? uriInfo.comment : @"");
-            if (handler) {
-                handler(nil, error);
-            }
-        };
-        LOG(@"Started with msgId:(%d, %d, %@), %@",
-            (int)(MAINMSG(msgId)), (int)(SUBMSG(msgId)), param, uriInfo.comment ? uriInfo.comment : @"");
-        [invocation setArgument:&failureBlock atIndex:index];
-        [invocation invokeWithTarget:self.networkManager];
-        __unsafe_unretained AFHTTPRequestOperation *operation;
-        [invocation getReturnValue:&operation];
-        operation.userInfo = @{kSENetworkOperationMsgIdKey: @(msgId)};
-    }
+                LOG(@"url = %@", operation.response.URL);
+                id data = operation.responseData;
+                if (uriInfo.responseZipped) {
+                    data = [data uncompressZippedData];
+                }
+                [self dataDidReturn:data msgId:msgId regClassName:uriInfo.responseModelClass handler:handler];
+            };
+            [invocation setArgument:&successBlock atIndex:index];
+            ++index;
+            FailureBlock failureBlock = ^(AFHTTPRequestOperation *operation, NSError *error) {
+                LOG(@"url = %@", operation.response.URL);
+                if ([operation isCancelled]) {
+                    LOG(@"Cancelled with msgId:(%d, %d), %@",
+                        (int)(MAINMSG(msgId)), (int)(SUBMSG(msgId)), uriInfo.comment ? uriInfo.comment : @"");
+                    return;
+                }
+                LOG(@"Failed with msgId:(%d, %d), %@",
+                    (int)(MAINMSG(msgId)), (int)(SUBMSG(msgId)), uriInfo.comment ? uriInfo.comment : @"");
+                if (handler) {
+                    handler(nil, error);
+                }
+            };
+            LOG(@"Started with msgId:(%d, %d, %@), %@",
+                (int)(MAINMSG(msgId)), (int)(SUBMSG(msgId)), param, uriInfo.comment ? uriInfo.comment : @"");
+            [invocation setArgument:&failureBlock atIndex:index];
+            [invocation invokeWithTarget:self.networkManager];
+            __unsafe_unretained AFHTTPRequestOperation *operation;
+            [invocation getReturnValue:&operation];
+            operation.userInfo = @{kSENetworkOperationMsgIdKey: @(msgId)};
+        }
+    });
 }
 
 - (void)cancelFetchWithMsgId:(NSInteger)msgId
 {
-    NSArray *operations = [self.networkManager.operationQueue operations];
-    for (AFHTTPRequestOperation *operation in operations) {
-        if ([operation.userInfo[kSENetworkOperationMsgIdKey] integerValue] == msgId) {
-            [operation cancel];
+    dispatch_async(_networkOperationQueue, ^{
+        NSArray *operations = [self.networkManager.operationQueue operations];
+        for (AFHTTPRequestOperation *operation in operations) {
+            if ([operation.userInfo[kSENetworkOperationMsgIdKey] integerValue] == msgId) {
+                [operation cancel];
+            }
         }
-    }
+    });
 }
 
 - (void)setReachableStatusChangeBlock:(void (^)(NetworkReachableStatus))block
@@ -387,6 +396,8 @@ static NSString *const kSENetworkOperationMsgIdKey = @"msgId";
                                [NSURL URLWithString:self.baseURLPath]];
             [_networkManager.reachabilityManager startMonitoring];
             _networkManager.responseSerializer = [AFHTTPResponseSerializer serializer];
+//            NSSet *set = [_networkManager.responseSerializer.acceptableContentTypes setByAddingObject:@"application/x-gzip"];
+//            _networkManager.responseSerializer.acceptableContentTypes = set;
         }
     }
     return _networkManager;
@@ -418,8 +429,10 @@ static NSString *const kSENetworkOperationMsgIdKey = @"msgId";
 
 - (void)setAnimatingWithStateOfMsgId:(NSInteger)msgId
 {
-    AFURLConnectionOperation *operation = [SENetworkOperationManager operationWithMsgId:msgId];
-    [self setAnimatingWithStateOfOperation:operation];
+    dispatch_async(_networkOperationQueue, ^{
+        AFURLConnectionOperation *operation = [SENetworkOperationManager operationWithMsgId:msgId];
+        [self setAnimatingWithStateOfOperation:operation];
+    });
 }
 
 @end

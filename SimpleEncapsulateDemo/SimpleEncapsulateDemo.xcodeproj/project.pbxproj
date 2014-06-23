@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AA44E9151949EAA60044EB67 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA44E9131949EAA60044EB67 /* AFNetworking.framework */; };
-		AA44E9161949EAA60044EB67 /* FMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA44E9141949EAA60044EB67 /* FMDB.framework */; };
 		AA44E9191949EAC30044EB67 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA44E9181949EAC30044EB67 /* Security.framework */; };
 		AA44E91B1949EAC90044EB67 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA44E91A1949EAC90044EB67 /* MobileCoreServices.framework */; };
 		AA44E91D1949EAD80044EB67 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA44E91C1949EAD80044EB67 /* CoreTelephony.framework */; };
@@ -34,8 +32,8 @@
 		AA8ABF861949C5AA00E179BD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA8ABF681949C5AA00E179BD /* UIKit.framework */; };
 		AA8ABF8E1949C5AA00E179BD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AA8ABF8C1949C5AA00E179BD /* InfoPlist.strings */; };
 		AA8ABF901949C5AA00E179BD /* SimpleEncapsulateDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8ABF8F1949C5AA00E179BD /* SimpleEncapsulateDemoTests.m */; };
-		AA8ABF9C1949C61C00E179BD /* libSimpleEncapsulate.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA8ABF9B1949C61C00E179BD /* libSimpleEncapsulate.a */; };
 		AA8ABFA11949E1DC00E179BD /* URIInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA8ABFA01949E1DC00E179BD /* URIInfo.plist */; };
+		AAEAA30619542F1A00F4F787 /* SimpleEncapsulate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAEAA30519542F1A00F4F787 /* SimpleEncapsulate.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,32 +44,9 @@
 			remoteGlobalIDString = AA8ABF601949C5AA00E179BD;
 			remoteInfo = SimpleEncapsulateDemo;
 		};
-		AA8ABFA71949E50200E179BD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = AA8ABFA21949E50200E179BD /* SimpleEncapsulate.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = AA8ABEEB1949B1A500E179BD;
-			remoteInfo = SimpleEncapsulate;
-		};
-		AA8ABFA91949E50200E179BD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = AA8ABFA21949E50200E179BD /* SimpleEncapsulate.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = AA8ABEFB1949B1A500E179BD;
-			remoteInfo = SimpleEncapsulateTests;
-		};
-		AA8ABFAB1949E52300E179BD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = AA8ABFA21949E50200E179BD /* SimpleEncapsulate.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = AA8ABEEA1949B1A500E179BD;
-			remoteInfo = SimpleEncapsulate;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		AA44E9131949EAA60044EB67 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = ../SimpleEncapsulate/AFNetworking.framework; sourceTree = "<group>"; };
-		AA44E9141949EAA60044EB67 /* FMDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FMDB.framework; path = ../SimpleEncapsulate/FMDB.framework; sourceTree = "<group>"; };
 		AA44E9181949EAC30044EB67 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		AA44E91A1949EAC90044EB67 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		AA44E91C1949EAD80044EB67 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -107,9 +82,8 @@
 		AA8ABF8B1949C5AA00E179BD /* SimpleEncapsulateDemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SimpleEncapsulateDemoTests-Info.plist"; sourceTree = "<group>"; };
 		AA8ABF8D1949C5AA00E179BD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AA8ABF8F1949C5AA00E179BD /* SimpleEncapsulateDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimpleEncapsulateDemoTests.m; sourceTree = "<group>"; };
-		AA8ABF9B1949C61C00E179BD /* libSimpleEncapsulate.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSimpleEncapsulate.a; path = "../SimpleEncapsulate/build/Debug-iphoneos/libSimpleEncapsulate.a"; sourceTree = "<group>"; };
 		AA8ABFA01949E1DC00E179BD /* URIInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = URIInfo.plist; sourceTree = "<group>"; };
-		AA8ABFA21949E50200E179BD /* SimpleEncapsulate.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SimpleEncapsulate.xcodeproj; path = ../../SimpleEncapsulate/SimpleEncapsulate.xcodeproj; sourceTree = "<group>"; };
+		AAEAA30519542F1A00F4F787 /* SimpleEncapsulate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SimpleEncapsulate.framework; path = ../SimpleEncapsulate/SimpleEncapsulate.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,15 +91,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAEAA30619542F1A00F4F787 /* SimpleEncapsulate.framework in Frameworks */,
 				AA44E9231949EB000044EB67 /* SystemConfiguration.framework in Frameworks */,
 				AA44E9211949EAE80044EB67 /* libsqlite3.0.dylib in Frameworks */,
 				AA44E91F1949EAE10044EB67 /* libz.1.2.5.dylib in Frameworks */,
 				AA44E91D1949EAD80044EB67 /* CoreTelephony.framework in Frameworks */,
 				AA44E91B1949EAC90044EB67 /* MobileCoreServices.framework in Frameworks */,
 				AA44E9191949EAC30044EB67 /* Security.framework in Frameworks */,
-				AA44E9151949EAA60044EB67 /* AFNetworking.framework in Frameworks */,
-				AA44E9161949EAA60044EB67 /* FMDB.framework in Frameworks */,
-				AA8ABF9C1949C61C00E179BD /* libSimpleEncapsulate.a in Frameworks */,
 				AA8ABF671949C5AA00E179BD /* CoreGraphics.framework in Frameworks */,
 				AA8ABF691949C5AA00E179BD /* UIKit.framework in Frameworks */,
 				AA8ABF651949C5AA00E179BD /* Foundation.framework in Frameworks */,
@@ -167,15 +139,13 @@
 		AA8ABF631949C5AA00E179BD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AAEAA30519542F1A00F4F787 /* SimpleEncapsulate.framework */,
 				AA44E9221949EB000044EB67 /* SystemConfiguration.framework */,
 				AA44E9201949EAE80044EB67 /* libsqlite3.0.dylib */,
 				AA44E91E1949EAE10044EB67 /* libz.1.2.5.dylib */,
 				AA44E91C1949EAD80044EB67 /* CoreTelephony.framework */,
 				AA44E91A1949EAC90044EB67 /* MobileCoreServices.framework */,
 				AA44E9181949EAC30044EB67 /* Security.framework */,
-				AA44E9131949EAA60044EB67 /* AFNetworking.framework */,
-				AA44E9141949EAA60044EB67 /* FMDB.framework */,
-				AA8ABF9B1949C61C00E179BD /* libSimpleEncapsulate.a */,
 				AA8ABF641949C5AA00E179BD /* Foundation.framework */,
 				AA8ABF661949C5AA00E179BD /* CoreGraphics.framework */,
 				AA8ABF681949C5AA00E179BD /* UIKit.framework */,
@@ -187,7 +157,6 @@
 		AA8ABF6A1949C5AA00E179BD /* SimpleEncapsulateDemo */ = {
 			isa = PBXGroup;
 			children = (
-				AA8ABFA21949E50200E179BD /* SimpleEncapsulate.xcodeproj */,
 				AA8ABF731949C5AA00E179BD /* AppDelegate.h */,
 				AA8ABF741949C5AA00E179BD /* AppDelegate.m */,
 				AA8ABF761949C5AA00E179BD /* Main.storyboard */,
@@ -239,15 +208,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		AA8ABFA31949E50200E179BD /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				AA8ABFA81949E50200E179BD /* libSimpleEncapsulate.a */,
-				AA8ABFAA1949E50200E179BD /* SimpleEncapsulateTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -262,7 +222,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				AA8ABFAC1949E52300E179BD /* PBXTargetDependency */,
 			);
 			name = SimpleEncapsulateDemo;
 			productName = SimpleEncapsulateDemo;
@@ -312,12 +271,6 @@
 			mainGroup = AA8ABF581949C5AA00E179BD;
 			productRefGroup = AA8ABF621949C5AA00E179BD /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = AA8ABFA31949E50200E179BD /* Products */;
-					ProjectRef = AA8ABFA21949E50200E179BD /* SimpleEncapsulate.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				AA8ABF601949C5AA00E179BD /* SimpleEncapsulateDemo */,
@@ -325,23 +278,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		AA8ABFA81949E50200E179BD /* libSimpleEncapsulate.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libSimpleEncapsulate.a;
-			remoteRef = AA8ABFA71949E50200E179BD /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		AA8ABFAA1949E50200E179BD /* SimpleEncapsulateTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = SimpleEncapsulateTests.xctest;
-			remoteRef = AA8ABFA91949E50200E179BD /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		AA8ABF5F1949C5AA00E179BD /* Resources */ = {
@@ -396,11 +332,6 @@
 			isa = PBXTargetDependency;
 			target = AA8ABF601949C5AA00E179BD /* SimpleEncapsulateDemo */;
 			targetProxy = AA8ABF871949C5AA00E179BD /* PBXContainerItemProxy */;
-		};
-		AA8ABFAC1949E52300E179BD /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = SimpleEncapsulate;
-			targetProxy = AA8ABFAB1949E52300E179BD /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -517,12 +448,11 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					../SimpleEncapsulate,
+					"$(SRCROOT)/../SimpleEncapsulate",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SimpleEncapsulateDemo/SimpleEncapsulateDemo-Prefix.pch";
 				INFOPLIST_FILE = "SimpleEncapsulateDemo/SimpleEncapsulateDemo-Info.plist";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -535,12 +465,11 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					../SimpleEncapsulate,
+					"$(SRCROOT)/../SimpleEncapsulate",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SimpleEncapsulateDemo/SimpleEncapsulateDemo-Prefix.pch";
 				INFOPLIST_FILE = "SimpleEncapsulateDemo/SimpleEncapsulateDemo-Info.plist";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

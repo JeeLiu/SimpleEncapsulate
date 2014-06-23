@@ -7,7 +7,7 @@
 //
 
 #import "SEImageCache.h"
-#import <AFNetworking/AFNetworking.h>
+#import "AFNetworking.h"
 #import "SEDataCache.h"
 
 @implementation SEImageCache

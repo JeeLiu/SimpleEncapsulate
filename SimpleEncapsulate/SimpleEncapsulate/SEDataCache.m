@@ -182,9 +182,6 @@ static NSString *SEDataCacheInfoFile(void)
                        regClass == nil) {
                 // Assume data;
                 data = [NSData dataWithContentsOfFile:filePath];
-            } else if ([regClass isSubclassOfClass:[AMCObject class]]) {
-                NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:filePath];
-                data = [regClass objectWithRepresentation:dic];
             } else if ([regClass isSubclassOfClass:[NSArray class]]) {
                 data = [NSArray arrayWithContentsOfFile:filePath];
                 data = [regClass objectWithRepresentation:data];
