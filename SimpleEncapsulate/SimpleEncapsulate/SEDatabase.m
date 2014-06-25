@@ -170,7 +170,7 @@ typedef enum {
 
 - (BOOL)isConcurrent
 {
-    return self.type = kOperationQuery || kOperationQueryOneColumn;
+    return (self.type == kOperationQuery || self.type == kOperationQueryOneColumn);
 }
 
 @end
