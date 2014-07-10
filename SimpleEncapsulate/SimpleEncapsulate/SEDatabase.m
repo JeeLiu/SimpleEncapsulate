@@ -209,33 +209,35 @@ typedef enum {
 
 - (FMDatabaseQueue *)dbQueue
 {
-    if (!_dbQueue) {
-        NSString *filePath = [SEUtilities duplicateBundleFileWithName:self.dbName
-                                                          toDirectory:NSLibraryDirectory
-                                                            overwrite:_override];
-        if (filePath) {
-            _dbQueue = [[FMDatabaseQueue alloc] initWithPath:filePath];
-            [_dbQueue inDatabase:^(FMDatabase *db) {
-                db.logsErrors = DEBUG;
-                if (![db open]) {
-                    NSLog(@"Could not create database queue for path %@", filePath);
-                    return;
+    @synchronized(self) {
+        if (!_dbQueue) {
+            NSString *filePath = [SEUtilities duplicateBundleFileWithName:self.dbName
+                                                              toDirectory:NSLibraryDirectory
+                                                                overwrite:_override];
+            if (filePath) {
+                _dbQueue = [[FMDatabaseQueue alloc] initWithPath:filePath];
+                [_dbQueue inDatabase:^(FMDatabase *db) {
+                    db.logsErrors = DEBUG;
+                    if (![db open]) {
+                        NSLog(@"Could not create database queue for path %@", filePath);
+                        return;
+                    }
+                    _db = db;
+                    // We can accept data lost...
+                    sqlite3_exec(db.sqliteHandle, "PRAGMA synchronous = OFF; ", 0,0,0);
+                }];
+                if (!_dbQueue) {
+                    return nil;
                 }
-                _db = db;
-                // We can accept data lost...
-                sqlite3_exec(db.sqliteHandle, "PRAGMA synchronous = OFF; ", 0,0,0);
-            }];
-            if (!_dbQueue) {
-                return nil;
+                dispatch_set_target_queue(_updateQueue, _dbQueue.queue);
+                dispatch_queue_set_specific(_dbQueue.queue,
+                                            kDatabaseSpecificKey,
+                                            (__bridge void *)self,
+                                            NULL);
             }
-            dispatch_set_target_queue(_updateQueue, _dbQueue.queue);
-            dispatch_queue_set_specific(_dbQueue.queue,
-                                        kDatabaseSpecificKey,
-                                        (__bridge void *)self,
-                                        NULL);
         }
+        return _dbQueue;
     }
-    return _dbQueue;
 }
 
 - (void)setDbName:(NSString *)dbName

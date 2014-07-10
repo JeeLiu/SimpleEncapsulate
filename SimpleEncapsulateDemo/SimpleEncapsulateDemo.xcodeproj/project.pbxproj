@@ -18,6 +18,7 @@
 		AA44E92E194A9C110044EB67 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA44E92D194A9C110044EB67 /* DetailViewController.m */; };
 		AA44E934194A9FF80044EB67 /* SearchParam.m in Sources */ = {isa = PBXBuildFile; fileRef = AA44E933194A9FF80044EB67 /* SearchParam.m */; };
 		AA44E937194AD0680044EB67 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA44E936194AD0680044EB67 /* WebViewController.m */; };
+		AA65731B196A48FB009C2F80 /* SimpleEncapsulate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA65731A196A48FB009C2F80 /* SimpleEncapsulate.framework */; };
 		AA8ABF651949C5AA00E179BD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA8ABF641949C5AA00E179BD /* Foundation.framework */; };
 		AA8ABF671949C5AA00E179BD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA8ABF661949C5AA00E179BD /* CoreGraphics.framework */; };
 		AA8ABF691949C5AA00E179BD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA8ABF681949C5AA00E179BD /* UIKit.framework */; };
@@ -33,7 +34,6 @@
 		AA8ABF8E1949C5AA00E179BD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AA8ABF8C1949C5AA00E179BD /* InfoPlist.strings */; };
 		AA8ABF901949C5AA00E179BD /* SimpleEncapsulateDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8ABF8F1949C5AA00E179BD /* SimpleEncapsulateDemoTests.m */; };
 		AA8ABFA11949E1DC00E179BD /* URIInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA8ABFA01949E1DC00E179BD /* URIInfo.plist */; };
-		AAEAA30619542F1A00F4F787 /* SimpleEncapsulate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAEAA30519542F1A00F4F787 /* SimpleEncapsulate.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +63,7 @@
 		AA44E933194A9FF80044EB67 /* SearchParam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchParam.m; sourceTree = "<group>"; };
 		AA44E935194AD0680044EB67 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		AA44E936194AD0680044EB67 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		AA65731A196A48FB009C2F80 /* SimpleEncapsulate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SimpleEncapsulate.framework; path = ../SimpleEncapsulate.framework; sourceTree = "<group>"; };
 		AA8ABF611949C5AA00E179BD /* SimpleEncapsulateDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleEncapsulateDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA8ABF641949C5AA00E179BD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		AA8ABF661949C5AA00E179BD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -83,7 +84,6 @@
 		AA8ABF8D1949C5AA00E179BD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AA8ABF8F1949C5AA00E179BD /* SimpleEncapsulateDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimpleEncapsulateDemoTests.m; sourceTree = "<group>"; };
 		AA8ABFA01949E1DC00E179BD /* URIInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = URIInfo.plist; sourceTree = "<group>"; };
-		AAEAA30519542F1A00F4F787 /* SimpleEncapsulate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SimpleEncapsulate.framework; path = ../SimpleEncapsulate/SimpleEncapsulate.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,7 +91,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AAEAA30619542F1A00F4F787 /* SimpleEncapsulate.framework in Frameworks */,
 				AA44E9231949EB000044EB67 /* SystemConfiguration.framework in Frameworks */,
 				AA44E9211949EAE80044EB67 /* libsqlite3.0.dylib in Frameworks */,
 				AA44E91F1949EAE10044EB67 /* libz.1.2.5.dylib in Frameworks */,
@@ -100,6 +99,7 @@
 				AA44E9191949EAC30044EB67 /* Security.framework in Frameworks */,
 				AA8ABF671949C5AA00E179BD /* CoreGraphics.framework in Frameworks */,
 				AA8ABF691949C5AA00E179BD /* UIKit.framework in Frameworks */,
+				AA65731B196A48FB009C2F80 /* SimpleEncapsulate.framework in Frameworks */,
 				AA8ABF651949C5AA00E179BD /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -139,7 +139,7 @@
 		AA8ABF631949C5AA00E179BD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				AAEAA30519542F1A00F4F787 /* SimpleEncapsulate.framework */,
+				AA65731A196A48FB009C2F80 /* SimpleEncapsulate.framework */,
 				AA44E9221949EB000044EB67 /* SystemConfiguration.framework */,
 				AA44E9201949EAE80044EB67 /* libsqlite3.0.dylib */,
 				AA44E91E1949EAE10044EB67 /* libz.1.2.5.dylib */,
@@ -448,11 +448,12 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/../SimpleEncapsulate",
+					"$(SRCROOT)/../",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SimpleEncapsulateDemo/SimpleEncapsulateDemo-Prefix.pch";
 				INFOPLIST_FILE = "SimpleEncapsulateDemo/SimpleEncapsulateDemo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -465,11 +466,12 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/../SimpleEncapsulate",
+					"$(SRCROOT)/../",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SimpleEncapsulateDemo/SimpleEncapsulateDemo-Prefix.pch";
 				INFOPLIST_FILE = "SimpleEncapsulateDemo/SimpleEncapsulateDemo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

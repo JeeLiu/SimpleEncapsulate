@@ -13,7 +13,6 @@
 #import "DetailViewController.h"
 
 @interface ViewController ()<UISearchBarDelegate>
-
 @end
 
 @implementation ViewController
