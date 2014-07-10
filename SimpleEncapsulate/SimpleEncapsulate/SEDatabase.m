@@ -56,7 +56,7 @@ typedef enum {
 - (instancetype)initWithQuery:(NSString *)query;
 
 @property(nonatomic) DBOperationType type;
-@property(nonatomic, copy) id context;
+@property(nonatomic, strong) id context;
 @property(atomic, readonly, strong) NSString *query;
 @property(atomic, strong) id data;
 @property(nonatomic) NSInteger tag;
