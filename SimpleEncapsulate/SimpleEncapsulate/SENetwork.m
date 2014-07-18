@@ -347,8 +347,8 @@ static NSString *const kSENetworkOperationMsgIdKey = @"msgId";
                     handler(nil, error);
                 }
             };
-            LOG(@"Started with msgId:(%d, %d, %@), %@",
-                (int)(MAINMSG(msgId)), (int)(SUBMSG(msgId)), param, uriInfo.comment ? uriInfo.comment : @"");
+            LOG(@"Started with msgId:(%d, %d, URL[%@] %@), %@",
+                (int)(MAINMSG(msgId)), (int)(SUBMSG(msgId)), uriInfo.relativePath, param, uriInfo.comment ? uriInfo.comment : @"");
             [invocation setArgument:&failureBlock atIndex:index];
             [invocation invokeWithTarget:self.networkManager];
             __unsafe_unretained AFHTTPRequestOperation *operation;

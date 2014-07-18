@@ -22,12 +22,4 @@
 
 @implementation BookInfo
 
-- (NSString *)classNameWithPropertyName:(NSString *)propertyName
-{
-    if ([propertyName isEqualToString:@"tags"]) {
-        return [Tags className];
-    }
-    return nil;
-}
-
 @end

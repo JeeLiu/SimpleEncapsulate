@@ -105,14 +105,10 @@ NSString *const AMCKeyValueCodingFailureException = @"AMCKeyValueCodingFailureEx
 {
     if (![aDict isKindOfClass:[NSDictionary class]])
         return [[self alloc] init];
-    NSString *className = [aDict objectForKey: kAMCDictionaryKeyClassName];
-    Class rClass = NSClassFromString(className);
-    if (rClass == nil) {
-        rClass = self;
-    }
+
     if ( [self instancesRespondToSelector:@selector(initWithDictionaryRepresentation:) ] )
     {
-        id instance = AMCAutorelease([[rClass alloc] initWithDictionaryRepresentation: aDict]);
+        id instance = AMCAutorelease([[self alloc] initWithDictionaryRepresentation: aDict]);
         return instance;
     }
     return [[self alloc] init];
@@ -313,19 +309,7 @@ NSString *const AMCKeyValueCodingFailureException = @"AMCKeyValueCodingFailureEx
     return aDict;
 }
 
-- (NSDictionary *) dictionaryRepresentationWithClassName
-{
-    NSMutableDictionary *dic = (NSMutableDictionary *)[self dictionaryRepresentation];
-    [dic setValue:[self className] forKey: kAMCDictionaryKeyClassName];
-    return dic;
-}
-
 #pragma mark - override by subclass
-
-- (NSString *)classNameWithPropertyName:(NSString *)propertyName
-{
-    return nil;
-}
 
 - (NSString *)keyWithPropertyName:(NSString *)propertyName
 {
@@ -354,11 +338,8 @@ NSString *const AMCKeyValueCodingFailureException = @"AMCKeyValueCodingFailureEx
         {
             if (classInstancesRespondsToAllSelectorsInProtocol(collectionClass, @protocol(AMCArrayProtocol)) ||
                 classInstancesRespondsToAllSelectorsInProtocol([collectionClass class], @protocol(AMCHashProtocol))) {
-                NSString *className = [value objectForKey:kAMCDictionaryKeyClassName];
-                if (!className) {
-                    className = [self classNameWithPropertyName:key];
-                }
-                collectionClass = NSClassFromString(className);
+                objc_property_t property = class_getProperty([self class], [key cStringUsingEncoding:NSUTF8StringEncoding]);
+                collectionClass = AMCContainerTypeClass(property);
             }
             id object = [[collectionClass alloc] initWithDictionaryRepresentation:(NSDictionary *) value];
             // Here was following code:
@@ -608,17 +589,10 @@ NSString *const AMCKeyValueCodingFailureException = @"AMCKeyValueCodingFailureEx
         // Maybe it's custom object encoded in NSDictionary?
         if (aKey && [object respondsToSelector:@selector(objectForKey:)])
         {
-            NSString *className = [object objectForKey: kAMCDictionaryKeyClassName];
-            if (className == nil) {
-                className = [self classNameWithPropertyName:aKey];
-            }
-            if ([className isKindOfClass:[NSString class]])
-            {
-                id encodedObjectClass = NSClassFromString(className);
-
-                if ([encodedObjectClass isSubclassOfClass:[AMCObject class]] &&
-                    [encodedObjectClass AMCEnabled])
-                    return kAMCFieldTypeCustomObject;
+            objc_property_t property = class_getProperty([self class], [aKey cStringUsingEncoding:NSUTF8StringEncoding]);
+            id encodedObjectClass = AMCContainerTypeClass(property);
+            if ([encodedObjectClass AMCEnabled]) {
+                return kAMCFieldTypeCustomObject;
             }
         }
         
@@ -815,12 +789,44 @@ id AMCPropertyClass (objc_property_t property)
         NSRange range = [classNameString rangeOfString:@"\""];
         
         classNameString = [classNameString substringToIndex: range.location];
-        
-        id class = NSClassFromString(classNameString);
+
+        NSArray *classComponents = [classNameString componentsSeparatedByString:@"<"];
+        id class = NSClassFromString(classComponents[0]);
         return class;
     }
     
     return nil;
+}
+
+Class AMCContainerTypeClass(objc_property_t property)
+{
+    if (!property)
+        return Nil;
+
+    const char *attributes = property_getAttributes(property);
+    char *classNameCString = strstr(attributes, "@\"");
+    if ( classNameCString )
+    {
+        classNameCString += 2; //< skip @" substring
+        NSString *classNameString = [NSString stringWithCString:classNameCString encoding:NSUTF8StringEncoding];
+        NSRange range = [classNameString rangeOfString:@"\""];
+
+        classNameString = [classNameString substringToIndex: range.location];
+        NSArray *classComponents = [classNameString componentsSeparatedByString:@"<"];
+        if ([classComponents count] == 2) { // has <protocol?>
+            Class prefixClass = NSClassFromString(classComponents[0]);
+            if (classInstancesRespondsToAllSelectorsInProtocol(prefixClass, @protocol(AMCArrayProtocol)) ||
+                classInstancesRespondsToAllSelectorsInProtocol(prefixClass, @protocol(AMCHashProtocol))) {
+                NSString *sufixString = [classComponents[1] substringToIndex:[classComponents[1] length] - 1];
+                Class class = NSClassFromString(sufixString); // amc ?
+                if (class_getSuperclass(class) == AMCObject.class &&
+                    classInstancesRespondsToAllSelectorsInProtocol(class, NSProtocolFromString(sufixString))) {
+                    return class;
+                }
+            }
+        }
+    }
+    return Nil;
 }
 
 NSString *AMCPropertyStructName(objc_property_t property)
@@ -899,8 +905,6 @@ BOOL classInstancesRespondsToAllSelectorsInProtocol(id class, Protocol *p )
     id container = nil;
     if ([representation isKindOfClass:[NSArray class]]) {
         container = [[NSMutableArray alloc] init];
-    } else if ([representation isKindOfClass:[NSSet class]]) {
-        container = [[NSMutableSet alloc] init];
     }
     if (container) {
         for (NSDictionary *dic in representation) {
@@ -922,20 +926,14 @@ BOOL classInstancesRespondsToAllSelectorsInProtocol(id class, Protocol *p )
     return [self representationWithClassName:NO];
 }
 
-- (id) representationWithClassName
-{
-    return [self representationWithClassName:YES];
-}
-
-- (id) representationWithClassName:(BOOL)withdraw
+- (id) representationWithClassName:(__unused BOOL)withdraw
 {
     id representation = self;
     id container = [[[[self class] alloc] init] mutableCopy];
-    if ([self isKindOfClass:[NSArray class]] ||
-        [self isKindOfClass:[NSSet class]]) {
+    if ([self isKindOfClass:[NSArray class]]) {
         for (id obj in representation) {
             if ([obj isKindOfClass:[AMCObject class]]) {
-                id object = withdraw ? [obj dictionaryRepresentationWithClassName] : [obj dictionaryRepresentation];
+                id object = [obj dictionaryRepresentation];
                 if (object) {
                     [container addObject:object];
                 }
@@ -948,7 +946,7 @@ BOOL classInstancesRespondsToAllSelectorsInProtocol(id class, Protocol *p )
         for (id key in representation) {
             id obj = [representation objectForKey:key];
             if ([obj isKindOfClass:[AMCObject class]]) {
-                id object = withdraw ? [obj dictionaryRepresentationWithClassName] : [obj dictionaryRepresentation];
+                id object = [obj dictionaryRepresentation];
                 if (object) {
                     [container setObject:object forKey:key];
                 }

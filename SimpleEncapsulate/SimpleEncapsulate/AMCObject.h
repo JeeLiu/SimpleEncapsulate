@@ -42,8 +42,22 @@ extern NSString *const AMCKeyValueCodingFailureException;
  * Value for this key from dictionary representation used to get Class
  * with NSClassFromString().
  */
-#define kAMCDictionaryKeyClassName @"class"
+//#define kAMCDictionaryKeyClassName @"class"
 
+/** An elegant way to get container type.
+ * Properties on AMCObjects of type NSArray must have an associated type. A type is associated
+ * with an NSArray property by defining a protocol for the object type which the NSArray will
+ * hold. To define an protocol for an object you can use the macro AMC_OBJECT_PROTOCOL:
+ *
+ * ie. AMC_CONTAINER_TYPE(ObjectType)
+ *
+ *     @property NSArray<ObjectType> *arrayOfObjectTypes;
+ *
+ * Thanks to Realm. http://realm.io
+ */
+#define AMC_CONTAINER_TYPE(AMC_OBJECT_SUBCLASS)\
+@protocol AMC_OBJECT_SUBCLASS <NSObject>   \
+@end
 
 @interface AMCObject : NSObject<NSCopying>
 
@@ -116,8 +130,6 @@ extern NSString *const AMCKeyValueCodingFailureException;
  */
 - (NSDictionary *) dictionaryRepresentation;
 
-- (NSDictionary *) dictionaryRepresentationWithClassName;
-
 #pragma mark Structure Support
 
 /** Returns NSString representation of structure given in NSValue.
@@ -170,12 +182,6 @@ extern NSString *const AMCKeyValueCodingFailureException;
 - (NSValue *) AMCDecodeStructFromString: (NSString *)value withName: (NSString *) structName;
 
 #pragma mark - override by subclass
-
-/** If we don't have kAMCDictionaryKeyClassName in dictionary, we call
- * -classNameWithContainerPropertyName: to get class name.
- * override by subclass.
- */
-- (NSString *)classNameWithPropertyName:(NSString *)propertyName;
 
 /** We can set property name from key while loading from dictionary
  * or set key with property name while saving to dictionary.
@@ -304,12 +310,11 @@ typedef enum
 @interface NSObject (AMCRepresentation)
 
 /**
- * Can be dictionary or array or set.
+ * Can be dictionary or array.
  */
 + (id) objectWithRepresentation: (id)representation;
 
 - (id) representation;
-- (id) representationWithClassName;
 
 @end
 

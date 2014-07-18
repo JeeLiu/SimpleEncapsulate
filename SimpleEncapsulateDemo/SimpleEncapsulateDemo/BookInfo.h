@@ -17,7 +17,9 @@
 
 @end
 
-@interface Tags : AMCObject
+AMC_CONTAINER_TYPE(Tags)
+
+@interface Tags : AMCObject<Tags>
 
 @property(nonatomic) NSInteger count;
 @property(nonatomic, strong) NSString *name;
@@ -39,7 +41,7 @@
 @property(nonatomic, strong) NSString *subtitle;
 @property(nonatomic, strong) NSArray *author;
 @property(nonatomic, strong) NSString *pubdate;
-@property(nonatomic, strong) NSArray *tags;
+@property(nonatomic, strong) NSArray<Tags> *tags;
 @property(nonatomic, strong) NSString *origin_title;
 @property(nonatomic, strong) NSString *image;
 @property(nonatomic, strong) NSString *binding;

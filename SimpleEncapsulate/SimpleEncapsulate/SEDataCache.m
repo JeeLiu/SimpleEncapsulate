@@ -139,7 +139,7 @@ static NSString *SEDataCacheInfoFile(void)
             } else if ([object isKindOfClass:[NSData class]]) {
                 data = object;
             } else if ([object isKindOfClass:[AMCObject class]]) {
-                data = [object dictionaryRepresentationWithClassName];
+                data = [object dictionaryRepresentation];
             } else if ([object isKindOfClass:[NSArray class]] ||
                        [object isKindOfClass:[NSDictionary class]]) {
                 data = data;

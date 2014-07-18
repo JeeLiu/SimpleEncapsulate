@@ -72,6 +72,26 @@ static SENetwork *mockNetwork = nil;
     XCTAssertTrue([network.baseURLPath isEqualToString:@"www.github.com"],
                   @"Base url path should not be nil!");
     XCTAssertTrue(network.networkManager != nil, @"Network manager should not be nil.");
+    NSDictionary *dic = @{@"Content-Type": @"application/json"};
+    [network prepareCommonHeader:dic];
+    SEURIInfo *uriInfo = [[SEURIInfo alloc] init];
+    uriInfo.msgId = 0;
+    uriInfo.relativePath = @"/get";
+    [network registerURIInfo:uriInfo forMsgId:0];
+    NSDictionary *headers = network.networkManager.requestSerializer.HTTPRequestHeaders;
+    XCTAssert([headers[@"Content-Type"] isEqualToString:@"application/json"], @"Common header mismatch!");
+    BOOL succeed = NO;
+    [network fetchWithMsgId:0 params:nil];
+    
+    for (AFHTTPRequestOperation *operation in [network.networkManager.operationQueue operations]) {
+        if ([operation.userInfo[@"msgId"] intValue] == 0) {
+            XCTAssertTrue([operation.request.URL.absoluteString hasSuffix:@"/get"],
+                          @"Relative Path must be \"/get\" while msgId == 0");
+            succeed = YES;
+            break;
+        }
+    }
+    XCTAssertTrue(succeed, @"No msg and URL?");
     id mock = [SENetwork createMockNetwork];
     [[mock stub] fetchWithMsgId:0
                          params:OCMOCK_ANY

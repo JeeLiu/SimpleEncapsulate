@@ -627,7 +627,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "echo \"If you're achiving, please remove this script!\"\ncp -rf \"${CONFIGURATION_BUILD_DIR}/${TARGET_NAME}.framework\" \"${PROJECT_DIR}/\"";
+			shellScript = "echo \"If you're achiving, please remove this script!\"\n#cp -rf \"${CONFIGURATION_BUILD_DIR}/${TARGET_NAME}.framework\" \"${PROJECT_DIR}/\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
