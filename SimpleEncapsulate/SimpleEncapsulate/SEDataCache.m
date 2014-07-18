@@ -127,6 +127,7 @@ static NSString *SEDataCacheInfoFile(void)
             NSString *fileName = [key sha1];
             NSString *filePath = [SEUtilities filePathWithName:fileName
                                                    inDirectory:NSCachesDirectory];
+            NSString *type = NSStringFromClass([object class]);
             id data;
             if ([object isKindOfClass:[UIImage class]]) {
                 NSString *ext = [[key pathExtension] lowercaseString];
@@ -140,9 +141,24 @@ static NSString *SEDataCacheInfoFile(void)
                 data = object;
             } else if ([object isKindOfClass:[AMCObject class]]) {
                 data = [object dictionaryRepresentation];
-            } else if ([object isKindOfClass:[NSArray class]] ||
-                       [object isKindOfClass:[NSDictionary class]]) {
-                data = data;
+            } else if ([object isKindOfClass:[NSArray class]]) {
+                id obj = [object firstObject];
+                if ([obj isKindOfClass:[AMCObject class]]) {
+                    // We assume all data are same type...
+                    type = [type stringByAppendingFormat:@"<%@>", [obj className]];
+                    data = [object representation];
+                } else {
+                    data = object;
+                }
+            } else if ([object isKindOfClass:[NSDictionary class]]) {
+                id obj = [[object allValues] firstObject];
+                if ([obj isKindOfClass:[AMCObject class]]) {
+                    // We assume all data are same type...
+                    type = [type stringByAppendingFormat:@"<%@>", [obj className]];
+                    data = [object representation];
+                } else {
+                    data = object;
+                }
             } else if ([object conformsToProtocol:@protocol(NSCoding)]) {
                 data = [NSKeyedArchiver archivedDataWithRootObject:object];
             } else {
@@ -151,7 +167,7 @@ static NSString *SEDataCacheInfoFile(void)
             }
             [data writeToFile:filePath atomically:YES];
             [self saveName:fileName
-                      type:NSStringFromClass([object class])
+                      type:type
                     forKey:key];
         });
     }
@@ -175,8 +191,12 @@ static NSString *SEDataCacheInfoFile(void)
                 return;
             }
             NSString *type = dic[@"type"];
-            Class regClass = NSClassFromString(type);
-            if ([regClass isSubclassOfClass:[UIImage class]]) {
+            NSArray *array = [type componentsSeparatedByString:@"<"];
+            Class regClass = NSClassFromString(array[0]);
+            if ([regClass isSubclassOfClass:[AMCObject class]]) {
+                data = [NSDictionary dictionaryWithContentsOfFile:filePath];
+                data = [regClass objectWithRepresentation:data];
+            } else if ([regClass isSubclassOfClass:[UIImage class]]) {
                 data = [UIImage imageWithContentsOfFile:filePath];
             } else if ([regClass isSubclassOfClass:[NSData class]] ||
                        regClass == nil) {
@@ -184,14 +204,20 @@ static NSString *SEDataCacheInfoFile(void)
                 data = [NSData dataWithContentsOfFile:filePath];
             } else if ([regClass isSubclassOfClass:[NSArray class]]) {
                 data = [NSArray arrayWithContentsOfFile:filePath];
-                data = [regClass objectWithRepresentation:data];
+                if ([array count] == 2) {
+                    NSString *className = [array[1] substringToIndex:[array[1] length] - 1];
+                    data = [regClass objectWithRepresentation:data className:className];
+                }
             } else if ([regClass isSubclassOfClass:[NSDictionary class]]) {
                 data = [NSDictionary dictionaryWithContentsOfFile:filePath];
-                data = [regClass objectWithRepresentation:data];
+                if ([array count] == 2) {
+                    NSString *className = [array[1] substringToIndex:[array[1] length] - 1];
+                    data = [regClass objectWithRepresentation:data className:className];
+                }
             } else if ([regClass conformsToProtocol:@protocol(NSCoding)]) {
                 data = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
             } else {
-                NSLog(@"Unknown data %@ formmat to get!", dic[@"type"]);
+                NSLog(@"Unknown data %@ format to get!", dic[@"type"]);
             }
         });
         return data;

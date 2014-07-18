@@ -902,31 +902,35 @@ BOOL classInstancesRespondsToAllSelectorsInProtocol(id class, Protocol *p )
 
 + (id) objectWithRepresentation: (id)representation
 {
+    return [self objectWithRepresentation:representation className:nil];
+}
+
++ (id) objectWithRepresentation: (id)representation className: (NSString *)className
+{
     id container = nil;
     if ([representation isKindOfClass:[NSArray class]]) {
         container = [[NSMutableArray alloc] init];
     }
+    Class cls = NSClassFromString(className);
+    if (cls == nil && [self isSubclassOfClass:[AMCObject class]]) {
+        cls = self;
+    }
     if (container) {
         for (NSDictionary *dic in representation) {
-            id obj = [[self class] objectWithDictionaryRepresentation:dic];
+            id obj = [cls objectWithDictionaryRepresentation:dic];
             if (obj) {
                 [container addObject:obj];
             }
         }
         return container;
     } else if ([representation isKindOfClass:[NSDictionary class]]) {
-        return [[self class] objectWithDictionaryRepresentation:representation];
+        return [cls objectWithDictionaryRepresentation:representation];
     } else {
         return [[[self class] alloc] init];
     }
 }
 
 - (id) representation
-{
-    return [self representationWithClassName:NO];
-}
-
-- (id) representationWithClassName:(__unused BOOL)withdraw
 {
     id representation = self;
     id container = [[[[self class] alloc] init] mutableCopy];
@@ -955,6 +959,8 @@ BOOL classInstancesRespondsToAllSelectorsInProtocol(id class, Protocol *p )
             }
         }
         return container;
+    } else if ([self isKindOfClass:[AMCObject class]]) {
+        return [representation dictionaryRepresentation];
     }
     return self;
 }

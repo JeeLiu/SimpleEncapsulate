@@ -312,7 +312,10 @@ typedef enum
 /**
  * Can be dictionary or array.
  */
+
 + (id) objectWithRepresentation: (id)representation;
+
++ (id) objectWithRepresentation: (id)representation className: (NSString *)className;
 
 - (id) representation;
 
