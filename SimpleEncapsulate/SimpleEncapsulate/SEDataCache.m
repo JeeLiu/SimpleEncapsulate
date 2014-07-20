@@ -277,7 +277,8 @@ static NSString *SEDataCacheInfoFile(void)
 
 - (void)invalidate
 {
-    [self invalidate];
+    [self removeAllObjects];
+    [self removeAllFiles];
 }
 
 @end
