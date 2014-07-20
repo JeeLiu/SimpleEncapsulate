@@ -819,8 +819,7 @@ Class AMCContainerTypeClass(objc_property_t property)
                 classInstancesRespondsToAllSelectorsInProtocol(prefixClass, @protocol(AMCHashProtocol))) {
                 NSString *sufixString = [classComponents[1] substringToIndex:[classComponents[1] length] - 1];
                 Class class = NSClassFromString(sufixString); // amc ?
-                if (class_getSuperclass(class) == AMCObject.class &&
-                    classInstancesRespondsToAllSelectorsInProtocol(class, NSProtocolFromString(sufixString))) {
+                if (class_getSuperclass(class) == AMCObject.class) {
                     return class;
                 }
             }

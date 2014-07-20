@@ -15,6 +15,7 @@
 
 static const NSInteger kDataCacheTotalCostLimit = 200;
 static const NSInteger kDataCacheCountLimit = 150;
+static NSString *const kDataCacheDefaultDirName = @"SimpleEncapsulate";
 
 @interface NSString (SHA1)
 
@@ -52,14 +53,29 @@ static void HexString(unsigned char *from, char *to, NSUInteger length) {
 
 @end
 
-static NSString *SEDataCacheInfoFile(void)
+static NSString *SEDataCacheDir(void)
 {
-    static NSString *filePath;
+    static NSString *dirPath;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        filePath = [SEUtilities filePathWithName:@"DataCache.plist"
-                                     inDirectory:NSCachesDirectory];
+        dirPath = [SEUtilities filePathWithName:kDataCacheDefaultDirName
+                                    inDirectory:NSCachesDirectory];
+        BOOL isDir = NO;
+        NSError *error;
+        if (![[NSFileManager defaultManager] fileExistsAtPath:dirPath isDirectory:&isDir]) {
+            [[NSFileManager defaultManager] createDirectoryAtPath:dirPath withIntermediateDirectories:YES attributes:nil error:&error];
+            if (error) {
+                NSLog(@"%@", error);
+                return;
+            }
+        }
     });
+    return dirPath;
+}
+
+static inline NSString *SEDataCacheInfoFile(void)
+{
+    NSString *filePath = [SEDataCacheDir() stringByAppendingPathComponent:@"DataCache.plist"];
     return filePath;
 }
 
@@ -125,8 +141,7 @@ static NSString *SEDataCacheInfoFile(void)
     if (object && key) {
         dispatch_sync(_defaultQueue, ^{
             NSString *fileName = [key sha1];
-            NSString *filePath = [SEUtilities filePathWithName:fileName
-                                                   inDirectory:NSCachesDirectory];
+            NSString *filePath = [SEDataCacheDir() stringByAppendingPathComponent:fileName];
             NSString *type = NSStringFromClass([object class]);
             id data;
             if ([object isKindOfClass:[UIImage class]]) {
@@ -182,8 +197,7 @@ static NSString *SEDataCacheInfoFile(void)
             if (!dic) {
                 return;
             }
-            NSString *filePath = [SEUtilities filePathWithName:dic[@"name"]
-                                                   inDirectory:NSCachesDirectory];
+            NSString *filePath = [SEDataCacheDir() stringByAppendingPathComponent:dic[@"name"]];
             if (![[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
                 dispatch_sync(_defaultQueue, ^{
                     [[self cacheDataMap] removeObjectForKey:key];
@@ -230,8 +244,7 @@ static NSString *SEDataCacheInfoFile(void)
     if (key) {
         dispatch_sync(_defaultQueue, ^{
             NSDictionary *dic = [[self cacheDataMap] objectForKey:key];
-            NSString *filePath = [SEUtilities filePathWithName:dic[@"name"]
-                                                   inDirectory:NSCachesDirectory];
+            NSString *filePath = [SEDataCacheDir() stringByAppendingPathComponent:dic[@"name"]];
             if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
                 [[NSFileManager defaultManager] removeItemAtPath:filePath error:nil];
             }
@@ -247,8 +260,7 @@ static NSString *SEDataCacheInfoFile(void)
     dispatch_sync(_defaultQueue, ^{
         for (id key in [self cacheDataMap]) {
             NSDictionary *dic = [[self cacheDataMap] objectForKey:key];
-            NSString *filePath = [SEUtilities filePathWithName:dic[@"name"]
-                                                   inDirectory:NSCachesDirectory];
+            NSString *filePath = [SEDataCacheDir() stringByAppendingPathComponent:dic[@"name"]];
             [[NSFileManager defaultManager] removeItemAtPath:filePath error:nil];
         }
         [[self cacheDataMap] removeAllObjects];
@@ -264,8 +276,7 @@ static NSString *SEDataCacheInfoFile(void)
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.date < %@", date];
         array = [array filteredArrayUsingPredicate:predicate];
         for (NSDictionary *dic in array) {
-            NSString *filePath = [SEUtilities filePathWithName:dic[@"name"]
-                                                   inDirectory:NSCachesDirectory];
+            NSString *filePath = [SEDataCacheDir() stringByAppendingPathComponent:dic[@"name"]];
             [[NSFileManager defaultManager] removeItemAtPath:filePath error:nil];
             NSArray *keys = [[self cacheDataMap] allKeysForObject:dic];
             [[self cacheDataMap] removeObjectsForKeys:keys];
